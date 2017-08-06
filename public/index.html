@@ -16,16 +16,21 @@
   <body>
     <div class="markup">
       <div class="view-container container">
-        <div class="row">
-          <div class="one-half column">
-            <h3>Learn JavaScript, one puzzle at at time.</h3>
-            <a href="" class="button button-primary">Start Now!</a>
+        <dev class="landing-view">
+          <div class="row">
+            <div class="one-half column">
+              <h3>Learn JavaScript, one puzzle at at time.</h3>
+              <a href="#problem-1" class="button button-primary">Start Now!</a>
+            </div>
+            <div class="one-half column">
+              <img src="/images/HeroImage.jpg" alt="">
+            </div>
           </div>
-          <div class="one-half column">
-            <img src="/images/HeroImage.jpg" alt="">
-          </div>
-        </div>
+        </dev>
       </div>
     </div>
+    <script>
+      $(window).ready(learnjs.appOnReady);
+    </script>
   </body>
 </html>
