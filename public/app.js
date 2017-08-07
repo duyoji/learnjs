@@ -1,6 +1,10 @@
 'use strict';
 
 var learnjs = {};
+learnjs.EVENT_TYPE = {
+  REMOVEING_VIEW: 'removingView'
+};
+
 learnjs.problems = [
   {
     description: 'What is truth?',
@@ -47,6 +51,16 @@ learnjs.problemView = function(data) {
   var problemData = learnjs.problems[problemNumber-1];
   var resultFlash = view.find('.result');
 
+  if (problemNumber < learnjs.problems.length) {
+    var buttonItem = learnjs.template('skip-btn');
+    var nextNum = problemNumber + 1;
+    buttonItem.find('a').attr('href', '#problem-' + nextNum);
+    $('.nav-list').append(buttonItem);
+    view.bind(learnjs.EVENT_TYPE.REMOVEING_VIEW, function() {
+      buttonItem.remove();
+    });
+  }
+
   function checkAnswer() {
     var answer= view.find('.answer').val();
     var test = problemData.code.replace('__', answer) + '; problem();';
@@ -79,6 +93,7 @@ learnjs.showView = function(hash) {
   var hashParts = hash.split('-');
   var viewFn = routes[hashParts[0]];
   if(viewFn) {
+    learnjs.triggerEvent(learnjs.EVENT_TYPE.REMOVEING_VIEW, []);
     $('.view-container').empty().append(viewFn(hashParts[1]));
   }
 };
@@ -94,6 +109,10 @@ learnjs.flashElement = function(elem, content) {
     elem.html(content);
     elem.fadeIn();
   });
+};
+
+learnjs.triggerEvent = function(name, args) {
+  $('.view-container > *').trigger(name, args);
 };
 
 // TODO page58,59
