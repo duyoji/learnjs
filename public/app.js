@@ -95,9 +95,10 @@ learnjs.problemView = function(data) {
 
 learnjs.profileView = function() {
   var view = learnjs.template('profile-view');
-  learnjs.identiy.done(function(identity) {
+  learnjs.identity.done(function(identity) {
     view.find('.email').text(identity.email);
   });
+  return view;
 };
 
 learnjs.showView = function(hash) {
