@@ -1,30 +1,30 @@
 {
     "Role": {
-        "Path": "/",
-        "Arn": "arn:aws:iam::439703776662:role/_cognito_authenticated",
-        "CreateDate": "2017-08-07T06:58:01.618Z",
-        "RoleName": "_cognito_authenticated",
+        "Arn": "arn:aws:iam::439703776662:role/learnjs_cognito_authenticated",
+        "RoleName": "learnjs_cognito_authenticated",
         "AssumeRolePolicyDocument": {
-            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Effect": "Allow",
-                    "Action": "sts:AssumeRoleWithWebIdentity",
                     "Sid": "",
-                    "Condition": {
-                        "StringEquals": {
-                            "cognito-identity.amazonaws.com:aud": ""
-                        },
-                        "ForAnyValue:StringLike": {
-                            "cognito-identity.amazonaws.com:amr": "authenticated"
-                        }
-                    },
                     "Principal": {
                         "Federated": "cognito-identity.amazonaws.com"
-                    }
+                    },
+                    "Action": "sts:AssumeRoleWithWebIdentity",
+                    "Condition": {
+                        "ForAnyValue:StringLike": {
+                            "cognito-identity.amazonaws.com:amr": "authenticated"
+                        },
+                        "StringEquals": {
+                            "cognito-identity.amazonaws.com:aud": "ap-northeast-1:eadf6495-3cb0-4604-bf35-c0b6032e315b"
+                        }
+                    },
+                    "Effect": "Allow"
                 }
-            ]
+            ],
+            "Version": "2012-10-17"
         },
-        "RoleId": "AROAIYIVKAY7ODAS6QOYE"
+        "RoleId": "AROAI3GP4PTZSZRBWJJY6",
+        "Path": "/",
+        "CreateDate": "2017-08-07T11:02:12.827Z"
     }
 }
