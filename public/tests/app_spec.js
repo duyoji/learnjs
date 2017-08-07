@@ -46,23 +46,41 @@ describe('LearnJS', function() {
   });
 
   describe('answer section', function() {
-    var view;
-    beforeEach(function() {
+    describe('not last problem', function() {
+      var view;
+      beforeEach(function() {
         view = learnjs.problemView('1');
+      });
+
+      it('can check a correct answer by hitting a button', function() {
+        view.find('.answer').val('true');
+        view.find('.check-btn').click();
+        expect( view.find('.correct-flash span').text() ).toEqual('Correct!');
+        expect( view.find('.correct-flash a').text() ).toEqual(' Next Problem');
+        expect( view.find('.correct-flash a').attr('href') ).toEqual('#problem-2');
+      });
+
+      it('rejects an incorrect answer', function() {
+        view.find('.answer').val('false');
+        view.find('.check-btn').click();
+        expect( view.find('.result').text() ).toEqual('Incorrect!');
+      });
     });
 
-    it('can check a correct answer by hitting a button', function() {
-      view.find('.answer').val('true');
-      view.find('.check-btn').click();
-      expect( view.find('.correct-flash span').text() ).toEqual('Correct!');
-      expect( view.find('.correct-flash a').text() ).toEqual(' Next Problem');
-      expect( view.find('.correct-flash a').attr('href') ).toEqual('#problem-2');
-    });
+    describe('last problem', function() {
+      var view;
+      beforeEach(function() {
+        var lastNum = learnjs.problems.length;
+        view = learnjs.problemView(lastNum);
+      });
 
-    it('rejects an incorrect answer', function() {
-      view.find('.answer').val('false');
-      view.find('.check-btn').click();
-      expect( view.find('.result').text() ).toEqual('Incorrect!');
+      it('can check a correct answer by hitting a button', function() {
+        view.find('.answer').val('7');
+        view.find('.check-btn').click();
+        expect( view.find('.correct-flash span').text() ).toEqual('Correct!');
+        expect( view.find('.correct-flash a').text() ).toEqual("You're Finished!");
+        expect( view.find('.correct-flash a').attr('href') ).toEqual('/');
+      });
     });
   });
 });
