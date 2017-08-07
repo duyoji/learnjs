@@ -117,3 +117,12 @@ learnjs.triggerEvent = function(name, args) {
 
 // TODO page58,59
 learnjs.formatCode = function() {};
+
+
+
+/*********************************
+ * public function (no namespace)
+ *********************************/
+function googleSignin() {
+  console.log(arguments);
+}
